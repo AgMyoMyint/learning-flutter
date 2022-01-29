@@ -10,6 +10,13 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context){
-    return MaterialApp(home: Text('Hello Aung Myo Myint! You are gonna be great at flutter too. '));
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text ('My First App'),
+          ), 
+          body: Text('This is my default text.'),
+      ),
+    );
   }
 }
