@@ -19,7 +19,21 @@ class MyApp extends StatefulWidget{
 class MyAppState extends State<MyApp>{
   
   var questionIndex = 0;
-  var questions = [ "Question1 ", "Question 2", "Question 3"];
+  var questions = [
+    {
+      "questionText": "What's your favourite color?",
+      'answers': ['Black', 'Red', 'Green', 'White'],
+    },
+    {
+      "questionText": "What's your favourite animal?",
+      'answers': ['Rabbit', 'Snake', 'Elephant', 'Lion'],
+    },
+    {
+      "questionText": "What's your favourite instructors?",
+      'answers': ['Max1', 'Max2', 'Max3', 'Max4'],
+    },
+
+  ];
   
   @override
   Widget build(BuildContext context){
@@ -33,10 +47,10 @@ class MyAppState extends State<MyApp>{
           
           Column(children : 
           [
-            Question(questions[questionIndex]),
-            Answer("Answer 1",answerQuestions),
-            Answer("Answer 2",answerQuestions),
-            Answer("Answer 3",answerQuestions),
+            Question(questions[questionIndex]['questionText']),
+            ...(questions[questionIndex]['answers'] as List<String>).map((answer){
+              return Answer(answer, answerQuestions);
+            }).toList()
           ],
           )
           
