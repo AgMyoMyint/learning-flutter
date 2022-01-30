@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/question.dart';
 
 // void main(){
 //   runApp(MyApp());
@@ -7,11 +8,20 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget{
+class MyApp extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState(){
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp>{
+  
+  var questionIndex = 0;
+  var questions = [ "Question1 ", "Question 2", "Question 3"];
+  
   @override
   Widget build(BuildContext context){
-
-    var questions = [ "Question1 ", "QUestion 2", "Question 3"];
 
     return MaterialApp(
       home: Scaffold(
@@ -22,10 +32,25 @@ class MyApp extends StatelessWidget{
           
           Column(children : 
           [
-            Text("Questions"),
-            RaisedButton(child: Text("Answer 1") ,onPressed: answerQuestions),
-            RaisedButton(child: Text("Answer 2") ,onPressed: answerQuestions),
-            RaisedButton(child: Text("Answer 3") ,onPressed: answerQuestions),
+            Question(questions[questionIndex]),
+            RaisedButton(
+              child: Text("Answer 1") ,
+              onPressed: () => {
+                answerQuestions()
+              }
+            ),
+            RaisedButton(
+              child: Text("Answer 2") ,
+              onPressed: () => {
+                answerQuestions()
+              }
+            ),
+            RaisedButton(
+              child: Text("Answer 3") ,
+              onPressed: () => {
+                answerQuestions()
+              }
+            ),
           ],
           )
           
@@ -35,6 +60,10 @@ class MyApp extends StatelessWidget{
   }
 
   void answerQuestions(){
-    print("Answer 1");
+    setState(() {
+      questionIndex = questionIndex + 1;
+    });
+    print("Answer ${questionIndex}");
+
   }
 }
